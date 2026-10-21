@@ -1,4 +1,4 @@
-export TARGET = iphone:clang:14.5:14.0
+export TARGET = iphone:clang:latest:14.0
 INSTALL_TARGET_PROCESSES = IPARanger
 
 ifeq ($(THEOS_PACKAGE_SCHEME),rootless)
