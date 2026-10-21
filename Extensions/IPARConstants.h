@@ -11,7 +11,7 @@ static const int APPS_SEARCH_INITIAL_LIMIT = 12;
     static NSString *const kLaunchPathMv = @"/var/jb/usr/bin/mv";
     #define kIPARangerLatestDownloadLogPath "/var/jb/Library/IPARanger/downloadProgress.txt"
     static NSString *const kDownloadProgressFileOutput = @"/var/jb/Library/IPARanger/downloadProgress.txt";
-    static NSString *const kIPARangerSettingsDict = @"/var/jb/User/Library/Preferences/com.0xkuj.iparangersettings.plist";
+    static NSString *const kIPARangerSettingsDict = @"/var/jb/User/Library/Preferences/dev.aayy.iparangersettings.plist";
     static NSString *const kIPARangerDocumentsPath = @"/var/jb/Library/IPARanger/";
     static NSString *const kIPARangerCacheDirPath = @"/var/jb/Library/IPARanger/cacheDir/";
     static NSString *const kIPARangerCacheDirTempPath = @"/var/jb/Library/IPARanger/cacheDir/TEMP";
@@ -30,7 +30,7 @@ static const int APPS_SEARCH_INITIAL_LIMIT = 12;
     static NSString *const kLaunchPathMv = @"/bin/mv";
     static NSString *const kDownloadProgressFileOutput = @"/var/mobile/Documents/IPARanger/downloadProgress.txt";
     #define kIPARangerLatestDownloadLogPath "/var/mobile/Documents/IPARanger/downloadProgress.txt"
-    static NSString *const kIPARangerSettingsDict = @"/var/mobile/Library/Preferences/com.0xkuj.iparangersettings.plist";
+    static NSString *const kIPARangerSettingsDict = @"/var/mobile/Library/Preferences/dev.aayy.iparangersettings.plist";
     static NSString *const kIPARangerDocumentsPath = @"/var/mobile/Documents/IPARanger/";
     static NSString *const kIPARangerCacheDirPath = @"/var/mobile/Documents/IPARanger/cacheDir/";
     static NSString *const kIPARangerCacheDirTempPath = @"/var/mobile/Documents/IPARanger/cacheDir/TEMP";
@@ -39,7 +39,7 @@ static const int APPS_SEARCH_INITIAL_LIMIT = 12;
     static NSString *const kAppinstScriptPath = @"/Applications/IPARanger.app/ipatool/appinst";
 #endif
 
-static NSString *const kIPARCountryChangedNotification = @"com.0xkuj.iparanger.countryChanged";
+static NSString *const kIPARCountryChangedNotification = @"dev.aayy.iparanger.countryChanged";
 static NSString *const kstdOutput = @"standardOutput";
 static NSString *const kerrorOutput = @"errorOutput";
 static NSString *const kSha256verification = @"22b9b697f865d25a702561e47a4748ade2675de6e26ad3a9ca2a607e66b0144b";

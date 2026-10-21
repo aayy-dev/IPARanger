@@ -189,10 +189,6 @@
                                            font:[UIFont systemFontOfSize:12 weight:UIFontWeightSemibold]
                                           color:[UIColor tertiaryLabelColor]];
 
-    UILabel *kuj = [self labelWithText:@"0xkuj — original IPARanger"
-                                  font:[UIFont systemFontOfSize:13 weight:UIFontWeightRegular]
-                                 color:[UIColor secondaryLabelColor]];
-
     UILabel *majd = [self labelWithText:@"Majd Alfhaily — ipatool"
                                    font:[UIFont systemFontOfSize:13 weight:UIFontWeightRegular]
                                   color:[UIColor secondaryLabelColor]];
@@ -203,7 +199,6 @@
 
     [stack addArrangedSubview:createdBy];
     [stack addArrangedSubview:thanksHeader];
-    [stack addArrangedSubview:kuj];
     [stack addArrangedSubview:majd];
     [stack addArrangedSubview:angel];
     [stack setCustomSpacing:18 afterView:createdBy];

@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>application-identifier</key>
-	<string>com.0xkuj.iparanger</string>
+	<string>dev.aayy.iparanger</string>
     <key>platform-application</key>
     <true/>
     <key>com.apple.private.security.no-container</key>
