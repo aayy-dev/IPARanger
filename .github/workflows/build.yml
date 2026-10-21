@@ -31,6 +31,7 @@ jobs:
           repository: aayy-dev/ipatool
           ref: keychain-passphrase-optional
           path: ipatool-fork
+          fetch-depth: 0
 
       - name: Check out AppSync fork (appinst)
         uses: actions/checkout@v4

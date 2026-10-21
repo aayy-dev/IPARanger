@@ -18,6 +18,9 @@ cd "$(dirname "$0")"
 
 IPATOOL_SRC="${IPATOOL_SRC:-$HOME/Git/ipatool-fork}"
 APPINST_SRC="${APPINST_SRC:-$HOME/Git/AppSync/appinst}"
+# IPARanger is a GUI wrapper for ipatool, so its version tracks the bundled
+# ipatool (latest tag in the fork). Override with IPATOOL_VERSION=.
+IPATOOL_VERSION="${IPATOOL_VERSION:-$(git -C "$IPATOOL_SRC" describe --tags --match 'v*' --abbrev=0 2>/dev/null | sed 's/^v//')}"
 IPATOOL_VERSION="${IPATOOL_VERSION:-2.7.1}"
 THEOS="${THEOS:-$HOME/theos}"
 MAKE="${MAKE:-make}"
@@ -37,11 +40,11 @@ chmod +x "$dest/ipatool" "$dest/appinst"
 echo "    ipatool:  $(file -b "$dest/ipatool" | cut -c1-40)"
 echo "    appinst:  $(file -b "$dest/appinst" | cut -c1-40)"
 
-echo "==> package IPARanger"
-# keep the app bundle version in sync with the package (single source of truth)
-IPAR_VER=$(sed -n 's/^Version: //p' layout/DEBIAN/control)
-plutil -replace CFBundleShortVersionString -string "$IPAR_VER" Resources/Info.plist
-plutil -replace CFBundleVersion -string "$IPAR_VER" Resources/Info.plist
+echo "==> package IPARanger $IPATOOL_VERSION (pinned to ipatool)"
+# Pin the package + bundle version to the bundled ipatool.
+sed -i.bak "s/^Version: .*/Version: $IPATOOL_VERSION/" layout/DEBIAN/control && rm -f layout/DEBIAN/control.bak
+plutil -replace CFBundleShortVersionString -string "$IPATOOL_VERSION" Resources/Info.plist
+plutil -replace CFBundleVersion -string "$IPATOOL_VERSION" Resources/Info.plist
 THEOS_PACKAGE_SCHEME=rootless "$MAKE" package FINALPACKAGE=1
 
 DEB=$(ls -t packages/dev.aayy.iparanger_*.deb | head -1)
