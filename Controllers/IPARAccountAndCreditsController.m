@@ -181,10 +181,6 @@
     stack.alignment = UIStackViewAlignmentCenter;
     stack.spacing = 6.0;
 
-    UILabel *createdBy = [self labelWithText:@"Created by aayy-dev"
-                                        font:[UIFont systemFontOfSize:15 weight:UIFontWeightSemibold]
-                                       color:[UIColor secondaryLabelColor]];
-
     UILabel *thanksHeader = [self labelWithText:@"SPECIAL THANKS"
                                            font:[UIFont systemFontOfSize:12 weight:UIFontWeightSemibold]
                                           color:[UIColor tertiaryLabelColor]];
@@ -197,11 +193,9 @@
                                     font:[UIFont systemFontOfSize:13 weight:UIFontWeightRegular]
                                    color:[UIColor secondaryLabelColor]];
 
-    [stack addArrangedSubview:createdBy];
     [stack addArrangedSubview:thanksHeader];
     [stack addArrangedSubview:majd];
     [stack addArrangedSubview:angel];
-    [stack setCustomSpacing:18 afterView:createdBy];
     [stack setCustomSpacing:8 afterView:thanksHeader];
     return stack;
 }

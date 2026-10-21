@@ -249,11 +249,6 @@
     links.spacing = 22.0;
     [links addArrangedSubview:[self linkButtonWithImageNamed:kGithubIcon title:@"Source code" action:@selector(openGithubLink)]];
 
-    UILabel *createdBy = [[UILabel alloc] init];
-    createdBy.text = @"Created by aayy-dev";
-    createdBy.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
-    createdBy.textColor = [UIColor secondaryLabelColor];
-
     UILabel *version = [[UILabel alloc] init];
     version.text = [NSString stringWithFormat:@"IPA Ranger version: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"?"];
     version.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
@@ -262,7 +257,6 @@
     version.numberOfLines = 0;
 
     [footer addArrangedSubview:links];
-    [footer addArrangedSubview:createdBy];
     [footer addArrangedSubview:version];
     [footer setCustomSpacing:18 afterView:links];
     return footer;

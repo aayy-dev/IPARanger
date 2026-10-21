@@ -130,4 +130,4 @@ static NSString *const kAccountTitle = @"Account";
 static NSString *const kSearchTitle = @"Search";
 static NSString *const kDownloadTitle = @"Download";
 static NSString *const kLastLoginDateKey = @"lastLoginDate";
-static NSString *const kIPARangerLoginSubtitle = @"The first GUI-based app for ipatool\n<made by aayy-dev>";
+static NSString *const kIPARangerLoginSubtitle = @"The first GUI-based app for ipatool";
