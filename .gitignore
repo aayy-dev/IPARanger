@@ -1,2 +1,4 @@
 .theos/
 .DS_Store
+Resources/ipatool/ipatool
+Resources/ipatool/appinst
