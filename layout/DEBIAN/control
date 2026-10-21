@@ -1,6 +1,6 @@
 Package: dev.aayy.iparanger
 Name: IPA Ranger
-Version: 2.7.1
+Version: 2.7.2
 Architecture: iphoneos-arm
 Description: GUI Based Application for ipatool
 Depends: gawk, unzip, plutil

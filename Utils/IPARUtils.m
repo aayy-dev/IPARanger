@@ -298,18 +298,6 @@ NSData *readDataFromFD(int fd) {
     return button;
 }
 
-+ (void)openTW {
-	UIApplication *application = [UIApplication sharedApplication];
-	NSURL *URL = [NSURL URLWithString:kTwitterLink];
-	[application openURL:URL options:@{} completionHandler:^(BOOL success) {return;}];
-}
-
-+ (void)openPP {
-	UIApplication *application = [UIApplication sharedApplication];
-	NSURL *URL = [NSURL URLWithString:kPaypalLink];
-	[application openURL:URL options:@{} completionHandler:^(BOOL success) {return;}];
-}
-
 + (void)openGithub {
 	UIApplication *application = [UIApplication sharedApplication];
 	NSURL *URL = [NSURL URLWithString:kGithubRepoLink];

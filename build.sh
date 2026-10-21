@@ -38,6 +38,10 @@ echo "    ipatool:  $(file -b "$dest/ipatool" | cut -c1-40)"
 echo "    appinst:  $(file -b "$dest/appinst" | cut -c1-40)"
 
 echo "==> package IPARanger"
+# keep the app bundle version in sync with the package (single source of truth)
+IPAR_VER=$(sed -n 's/^Version: //p' layout/DEBIAN/control)
+plutil -replace CFBundleShortVersionString -string "$IPAR_VER" Resources/Info.plist
+plutil -replace CFBundleVersion -string "$IPAR_VER" Resources/Info.plist
 THEOS_PACKAGE_SCHEME=rootless "$MAKE" package FINALPACKAGE=1
 
 DEB=$(ls -t packages/dev.aayy.iparanger_*.deb | head -1)

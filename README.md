@@ -5,7 +5,7 @@ This app is meant for jailbroken devices, but may support non-jailbroken devices
 
 # Instructions
   * Install dependencies (gawk, unzip, appsync unified) as these are required to run some commands / install the IPAs you download
-  * Install the deb file containing the package either from packages directory or from havoc repository.
+  * Install the deb file containing the package either from the packages directory or from the aayy-dev repo (https://dev.rtrdd.fyi).
   
 
 # Usage 

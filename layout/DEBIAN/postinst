@@ -1,5 +1,5 @@
 #!/bin/bash
-#Created by: 0xkuj
+#Created by: aayy-dev
 
 CHECK_ROOTLESS="/var/jb/"
 if [ -d $CHECK_ROOTLESS ]; then
@@ -52,4 +52,4 @@ fi
 # fi
 
 echo "You are all set. Enjoy!"
-echo "Created with <3 by 0xkuj"
+echo "Created with <3 by aayy-dev"

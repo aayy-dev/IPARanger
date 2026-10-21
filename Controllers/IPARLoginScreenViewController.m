@@ -258,16 +258,15 @@
     links.axis = UILayoutConstraintAxisHorizontal;
     links.alignment = UIStackViewAlignmentCenter;
     links.spacing = 22.0;
-    [links addArrangedSubview:[self linkButtonWithImageNamed:kTwitterIcon title:@"Need help?" action:@selector(openTwitter)]];
     [links addArrangedSubview:[self linkButtonWithImageNamed:kGithubIcon title:@"Source code" action:@selector(openGithubLink)]];
 
     UILabel *createdBy = [[UILabel alloc] init];
-    createdBy.text = @"Created by 0xkuj";
+    createdBy.text = @"Created by aayy-dev";
     createdBy.font = [UIFont systemFontOfSize:13 weight:UIFontWeightMedium];
     createdBy.textColor = [UIColor secondaryLabelColor];
 
     UILabel *version = [[UILabel alloc] init];
-    version.text = kIPARangerVersion;
+    version.text = [NSString stringWithFormat:@"IPA Ranger version: %@", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: @"?"];
     version.font = [UIFont systemFontOfSize:12 weight:UIFontWeightRegular];
     version.textColor = [UIColor tertiaryLabelColor];
     version.textAlignment = NSTextAlignmentCenter;
@@ -312,7 +311,6 @@
     return button;
 }
 
-- (void)openTwitter { [IPARUtils openTW]; }
 - (void)openGithubLink { [IPARUtils openGithub]; }
 
 #pragma mark - Password visibility

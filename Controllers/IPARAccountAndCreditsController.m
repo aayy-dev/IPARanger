@@ -153,8 +153,8 @@
 #pragma mark - About card
 
 - (UIView *)makeAboutCard {
-    NSString *ipatool = [self valueFromVersionString:kipaToolVersion];
-    NSString *ranger = [self valueFromVersionString:kIPARangerVersion];
+    NSString *ipatool = [self ipatoolVersion];
+    NSString *ranger = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"] ?: kUnknownValue;
 
     NSArray<UIView *> *rows = @[
         [self infoRowWithTitle:@"Last login" value:[self formattedLoginDate]],
@@ -168,8 +168,6 @@
 
 - (UIView *)makeLinksCard {
     NSArray<UIView *> *rows = @[
-        [self linkRowWithImageNamed:kTwitterIcon title:@"Follow me on Twitter" action:@selector(openTwitter)],
-        [self linkRowWithImageNamed:kPaypalIcon title:@"Buy me a coffee" action:@selector(openPaypal)],
         [self linkRowWithImageNamed:kGithubIcon title:@"Source code" action:@selector(openGithub)],
     ];
     return [self cardWithRows:rows separatorInset:56];
@@ -183,13 +181,17 @@
     stack.alignment = UIStackViewAlignmentCenter;
     stack.spacing = 6.0;
 
-    UILabel *createdBy = [self labelWithText:@"Created by 0xkuj"
+    UILabel *createdBy = [self labelWithText:@"Created by aayy-dev"
                                         font:[UIFont systemFontOfSize:15 weight:UIFontWeightSemibold]
                                        color:[UIColor secondaryLabelColor]];
 
     UILabel *thanksHeader = [self labelWithText:@"SPECIAL THANKS"
                                            font:[UIFont systemFontOfSize:12 weight:UIFontWeightSemibold]
                                           color:[UIColor tertiaryLabelColor]];
+
+    UILabel *kuj = [self labelWithText:@"0xkuj — original IPARanger"
+                                  font:[UIFont systemFontOfSize:13 weight:UIFontWeightRegular]
+                                 color:[UIColor secondaryLabelColor]];
 
     UILabel *majd = [self labelWithText:@"Majd Alfhaily — ipatool"
                                    font:[UIFont systemFontOfSize:13 weight:UIFontWeightRegular]
@@ -201,6 +203,7 @@
 
     [stack addArrangedSubview:createdBy];
     [stack addArrangedSubview:thanksHeader];
+    [stack addArrangedSubview:kuj];
     [stack addArrangedSubview:majd];
     [stack addArrangedSubview:angel];
     [stack setCustomSpacing:18 afterView:createdBy];
@@ -350,8 +353,6 @@
 
 #pragma mark - Link actions
 
-- (void)openTwitter { [IPARUtils openTW]; }
-- (void)openPaypal { [IPARUtils openPP]; }
 - (void)openGithub { [IPARUtils openGithub]; }
 
 #pragma mark - Helpers
@@ -366,13 +367,18 @@
     return kUnknownValue;
 }
 
-// "ipatool version: 2.5.0 (fork) (iOS)" -> "2.5.0 (fork) (iOS)"
-- (NSString *)valueFromVersionString:(NSString *)versionString {
-    NSRange range = [versionString rangeOfString:@": "];
-    if (range.location != NSNotFound) {
-        return [versionString substringFromIndex:range.location + range.length];
+// Ask the bundled binary so this never drifts from what actually ships:
+// "ipatool version 2.7.1" -> "2.7.1"
+- (NSString *)ipatoolVersion {
+    NSDictionary *out = [IPARUtils setupTaskAndPipesWithCommand:[NSString stringWithFormat:@"%@ --version", kIpatoolScriptPath]];
+    for (NSString *line in out[kstdOutput]) {
+        NSRange range = [line rangeOfString:@"version "];
+        if (range.location != NSNotFound) {
+            NSString *v = [[line substringFromIndex:range.location + range.length] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (v.length) return v;
+        }
     }
-    return versionString;
+    return kUnknownValue;
 }
 
 #pragma mark - Logout

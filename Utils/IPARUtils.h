@@ -53,8 +53,6 @@ typedef void (^AlertTextFieldBlock)(UITextField *);
 + (UIButton *)createButtonWithImageName:(NSString *)imageName title:(NSString *)title fontSize:(CGFloat)fontSize selectorName:(NSString *)selectorName frame:(CGRect)frame;
 + (unsigned long long)calculateFolderSize:(NSString *)folderPath;
 + (void)openGithub;
-+ (void)openTW;
-+ (void)openPP;
 
 // Guest mode: the user is browsing already-downloaded IPAs without signing in.
 // Per session only (never persisted), so login stays the default launch screen.
