@@ -14,8 +14,6 @@
 @property (nonatomic) NSDictionary *lastCommandResult;
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic) UILabel *titleLabel;
-@property (nonatomic) int welcomeMessageCounter;
-@property (nonatomic) NSTimer *welcomeMessageTimer;
 @end
 
 @implementation IPARLoginScreenViewController
@@ -23,18 +21,9 @@
 - (void)loadView {
     [super loadView];
     _lastCommandResult = [NSDictionary dictionary];
-    self.welcomeMessageCounter = 10;
-    self.welcomeMessageTimer = nil;
     self.navigationController.navigationBarHidden = YES;
     self.view.backgroundColor = [UIColor systemBackgroundColor];
     [self buildUI];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (![[IPARUtils getKeyFromFile:kFirstLaunchKey defaultValueIfNil:kUnknownValue] isEqualToString:kFirstLaunchDoneKey]) {
-        [self showFirstTimeAlert];
-    }
 }
 
 #pragma mark - UI construction
@@ -358,43 +347,6 @@
     }
     [textField resignFirstResponder];
     return NO;
-}
-
-#pragma mark - Welcome
-
-- (void)showFirstTimeAlert {
-    if (self.welcomeMessageTimer != nil) {
-        [self.welcomeMessageTimer invalidate];
-    }
-    __weak typeof(self) weakSelf = self;
-
-    IPARDialog *dialog = [IPARDialog dialogWithTitle:@"Welcome to IPA Ranger!"
-                                             message:@"This is an open source project I worked hard to maintain. Your Apple ID and password are sent directly to Apple’s servers and are never saved on your device.\n\nIf you have any concerns, check out the source code below (and maybe drop a star ;) ).\n\nEnjoy!"];
-
-    [dialog addButtonWithTitle:@"Check out the code" style:IPARDialogButtonStyleCancel handler:^{
-        [IPARUtils openGithub];
-        [weakSelf showFirstTimeAlert];
-    }];
-
-    UIButton *okButton = [dialog addButtonWithTitle:@"OK (10…)" style:IPARDialogButtonStylePrimary handler:^{
-        [IPARUtils saveKeyToFile:kFirstLaunchKey withValue:kFirstLaunchDoneKey];
-    }];
-    okButton.enabled = NO;
-    okButton.alpha = 0.45;
-
-    [dialog presentOn:self];
-
-    self.welcomeMessageTimer = [NSTimer scheduledTimerWithTimeInterval:1.0 repeats:YES block:^(NSTimer * _Nonnull timer) {
-        weakSelf.welcomeMessageCounter--;
-        if (weakSelf.welcomeMessageCounter > 0) {
-            [okButton setTitle:[NSString stringWithFormat:@"OK (%d…)", weakSelf.welcomeMessageCounter] forState:UIControlStateNormal];
-        } else {
-            [okButton setTitle:@"OK" forState:UIControlStateNormal];
-            okButton.enabled = YES;
-            okButton.alpha = 1.0;
-            [weakSelf.welcomeMessageTimer invalidate];
-        }
-    }];
 }
 
 #pragma mark - Login
